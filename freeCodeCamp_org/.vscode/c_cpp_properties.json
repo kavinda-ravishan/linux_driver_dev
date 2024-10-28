@@ -16,7 +16,7 @@
                 "MODULE"
             ],
             "compilerPath": "/usr/bin/gcc",
-            "cStandard": "gnu89",
+            "cStandard": "gnu11",
             "intelliSenseMode": "gcc-x64"
         },
         {
@@ -29,15 +29,12 @@
                 "/usr/lib/gcc/x86_64-linux-gnu/13/include",
                 "${workspaceFolder}/**"
             ],
-            "forcedInclude": [
-                "${workspaceFolder}/linux/include/generated/autoconf.h"
-            ],
             "defines": [
                 "__GNUC__",
                 "__KERNEL__"
             ],
             "compilerPath": "/usr/bin/gcc",
-            "cStandard": "gnu89",
+            "cStandard": "gnu11",
             "intelliSenseMode": "gcc-x64"
         }
     ],
