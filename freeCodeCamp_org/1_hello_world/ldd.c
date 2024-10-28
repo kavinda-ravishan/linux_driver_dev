@@ -1,9 +1,9 @@
 #include <linux/init.h> 
 #include <linux/module.h>
 
-MODULE_LICENSE("GPL"); //*
-MODULE_AUTHOR("InPyjama Piyush"); //!
-MODULE_DESCRIPTION("Our first dynamically loadable kernel module"); //!
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("InPyjama Piyush");
+MODULE_DESCRIPTION("Our first dynamically loadable kernel module");
 
 static int pyjama_module_init (void) {
     printk("Hello, World! (from InPyjama!!)\n"); 
