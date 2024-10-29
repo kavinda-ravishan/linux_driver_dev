@@ -40,13 +40,7 @@
         4. Changes the state in list
         5. Removes it from the list and frees the memory.
 
-## 3_proc_read and 4_proc_write_to_user_space
+## 3_proc_read
 
 * `cat /proc/pyjama_driver` : read from proc
 * `sudo dmesg` : print log messages
-
-## 5_proc_read_from_user_space
-
-* `make all`
-* `sudo insmod ldd.ko`
-* `python3 user-app.py`

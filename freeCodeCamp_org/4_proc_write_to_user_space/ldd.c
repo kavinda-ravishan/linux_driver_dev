@@ -42,7 +42,7 @@ module_exit(pyjama_module_exit);
 static ssize_t pyjama_read(struct file* file_pointer, char __user* user_space_buffer, size_t count, loff_t* offset) {
     printk("pyjama_read\n");
 
-    const char msg[] = "ACK!";
+    const char msg[] = "ACK!\n";
     const size_t len = strlen(msg);
     
     // offset value is zero on the first call and we can update it for the next call
