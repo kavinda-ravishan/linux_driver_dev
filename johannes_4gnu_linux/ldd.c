@@ -35,7 +35,7 @@ static struct file_operations fops = {
 static int __init ModuleInit(void) {
     printk("module_sls init call\n");
 
-    /* register the device (get registerd device numbers `cat /proc/devices`) */
+    /* register the device (get already registerd device numbers `cat /proc/devices`) */
     const int ret_val = register_chrdev(SLS_MAJOR, SLS_CHAR_DEVICE_NAME, &fops);
 
     if(ret_val == 0) {
