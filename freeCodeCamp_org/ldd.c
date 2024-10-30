@@ -6,12 +6,17 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR("InPyjama Piyush");
 MODULE_DESCRIPTION("Our first dynamically loadable kernel module");
 
+#define PROC_BUFFER_SIZE 10
+static char proc_buffer[PROC_BUFFER_SIZE];
+
 static ssize_t pyjama_read(struct file *, char __user *, size_t, loff_t *);
+static ssize_t pyjama_write(struct file *, const char __user *, size_t, loff_t *);
 
 static struct proc_dir_entry *custom_proc_entry;
 
 struct proc_ops driver_proc_ops = {
-    .proc_read = pyjama_read
+    .proc_read = pyjama_read,
+    .proc_write = pyjama_write
 };
 
 static int pyjama_module_init (void) {
@@ -40,23 +45,44 @@ module_init(pyjama_module_init);
 module_exit(pyjama_module_exit);
 
 static ssize_t pyjama_read(struct file* file_pointer, char __user* user_space_buffer, size_t count, loff_t* offset) {
-    printk("pyjama_read\n");
+    printk(KERN_INFO "pyjama_read : count : %li", count);
 
-    const char msg[] = "ACK!";
-    const size_t len = strlen(msg);
+    const size_t len = PROC_BUFFER_SIZE;
     
-    // offset value is zero on the first call and we can update it for the next call
-    // check if buffer already read
     if(len <= *offset) {
-        return 0; // cat stop calling the read function
+        *offset = 0;
+        return 0;
     }
 
-    if(0 != copy_to_user(user_space_buffer, msg, len)) {
+    if(0 != copy_to_user(user_space_buffer, proc_buffer, len)) {
         printk("pyjama_read : copy to user call failed\n");
         return -1;
     }
 
     *offset += len;
 
-    return len; // len > 0; cat call read function again
+    return len;
+}
+
+static ssize_t pyjama_write(struct file* file_pointer, const char __user* user_space_buffer, size_t count, loff_t* offset) {
+
+    printk(KERN_INFO "pyjama_write : count : %li", count);
+
+    if(*offset > 0) {
+        *offset = 0;
+        return 0;
+    }
+
+    const size_t len = (PROC_BUFFER_SIZE > count ? count : PROC_BUFFER_SIZE - 1);
+
+    if(0 != copy_from_user(proc_buffer, user_space_buffer, len)) {
+        printk("pyjama_write : copy to user call failed\n");
+        return -1;
+    }
+
+    proc_buffer[len] = '\0';
+
+    *offset += len;
+
+    return len;
 }
