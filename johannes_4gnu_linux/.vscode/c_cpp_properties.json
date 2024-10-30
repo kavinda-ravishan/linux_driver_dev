@@ -1,0 +1,42 @@
+{
+    "configurations": [
+        {
+            "name": "Linux Kernel Module",
+            "includePath": [
+                "/usr/src/linux-headers-6.8.0-47/include",
+                "/usr/src/linux-headers-6.8.0-47/arch/x86/include",
+                "/usr/src/linux-headers-6.8.0-47-generic/include/**",
+                "/usr/src/linux-headers-6.8.0-47-generic/arch/x86/include/**",
+                "/usr/lib/gcc/x86_64-linux-gnu/13/include",
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "__GNUC__",
+                "__KERNEL__",
+                "MODULE"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "intelliSenseMode": "gcc-x64"
+        },
+        {
+            "name": "Linux Kernel",
+            "includePath": [
+                "/usr/src/linux-headers-6.8.0-47/include",
+                "/usr/src/linux-headers-6.8.0-47/arch/x86/include",
+                "/usr/src/linux-headers-6.8.0-47-generic/include/**",
+                "/usr/src/linux-headers-6.8.0-47-generic/arch/x86/include/**",
+                "/usr/lib/gcc/x86_64-linux-gnu/13/include",
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "__GNUC__",
+                "__KERNEL__"
+            ],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}
