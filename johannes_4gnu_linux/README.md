@@ -5,14 +5,16 @@
 
 ### load the device and create a node to /dev
 * `sudo insmod ldd.ko`
-* `sudo mknod /dev/sls_dev c 90 0` : add loaded 'sls_dev' to /dev/ (c - char driver, 90 - major num, 0 - minor num)
-* `ls /dev/sls_dev -al` : check added node to /dev/
 * `sudo chmod 666 /dev/sls_dev` : change permission
+* `ls /dev/sls_dev -al` : check added node to /dev/
+
+### tests
+* `echo "hello word" > /dev/sls_dev`
+* `head -n 1 /dev/sls_dev`
 
 ### run user app
 * `./app.out`
 
 ### cleanup
-* `make clean`
-* `sudo rm /dev/sls_dev`
 * `sudo rmmod ldd.ko`
+* `make clean`

@@ -1,6 +1,10 @@
 {
     "files.associations": {
         "module.h": "c",
-        "fs.h": "c"
+        "fs.h": "c",
+        "compare": "c",
+        "type_traits": "c",
+        "new": "c",
+        "typeinfo": "c"
     }
 }
